@@ -8,8 +8,11 @@ var inputUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var inputLower = "abcdefghijklmnopqrstuvwxyz";
 var inputNumeric = "0123456789";
 var inputSymbols = "#$%&()*+<=>?@";
+
+// Empty variable that we will add to later depending on user selections
 var inputChar = ""
 
+// Takes user through steps and uses those responses to create password
 function generatePassword() {
 
   // Ask user for number of characters in their password
@@ -19,13 +22,13 @@ function generatePassword() {
 
     }else if (charLength > 128) {
       window.alert("Your password is too long. Pick a number between 8-128.");
-      
+    
+    // If invalid input is entered, user will be taken back to length prompt  
     }else if (Number.isNaN(charLength)) {
       window.alert("Please enter a number between 8-128 and no other characters.");
     
   
-  // Ask user for confirmation of types of characters contained in password
-
+    // Ask user for confirmation of types of characters to be contained in password
     }else {
         var upperConfirm = window.confirm("Should your password contain uppercase letters?");
         if (upperConfirm) {
@@ -46,6 +49,8 @@ function generatePassword() {
         if (symbolConfirm) {
           inputChar += inputSymbols   
         };
+
+        // Prompt user to re-select options of none are selected
         if (inputUpper === false 
           && inputLower === false 
           && inputNumeric === false 
@@ -54,7 +59,7 @@ function generatePassword() {
             generatePassword();
         }
     }
-
+  // Randomize characters to generate password
   var randomPassword = "";
   for (var i = 0; i < charLength; i++) {
     randomPassword += inputChar.charAt(Math.floor(Math.random() * inputChar.length))
